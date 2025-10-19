@@ -9,22 +9,20 @@ class AboutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
 
-        // Ensure ActionBar is enabled and set up with back button
         supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true) // Enable back button
-            setDisplayShowHomeEnabled(true) // Ensure home/up button is shown
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
         }
 
-        // Set up OnBackPressedCallback for modern back handling
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                finish() // Return to MainActivity without creating a new instance
+                finish()
             }
         })
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressedDispatcher.onBackPressed() // Use dispatcher for ActionBar back
+        onBackPressedDispatcher.onBackPressed()
         return true
     }
 }

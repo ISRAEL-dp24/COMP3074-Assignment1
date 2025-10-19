@@ -16,14 +16,13 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        // Set window insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // Get references to input fields and output text views
+
         val hoursInput = findViewById<EditText>(R.id.hoursInput)
         val rateInput = findViewById<EditText>(R.id.rateInput)
         val taxInput = findViewById<EditText>(R.id.taxInput)
@@ -34,14 +33,14 @@ class MainActivity : AppCompatActivity() {
         val totalPayText = findViewById<TextView>(R.id.totalPayText)
         val taxText = findViewById<TextView>(R.id.taxText)
 
-        // Set click listener for Calculate button
+
         calculateButton.setOnClickListener {
-            // Get input values and convert to Double
+
             val hours = hoursInput.text.toString().toDoubleOrNull() ?: 0.0
             val rate = rateInput.text.toString().toDoubleOrNull() ?: 0.0
             val taxRate = taxInput.text.toString().toDoubleOrNull() ?: 0.0
 
-            // Calculate pay
+            //calculate pay..
             val pay: Double
             val overtimePay: Double
             if (hours <= 40) {
@@ -54,14 +53,13 @@ class MainActivity : AppCompatActivity() {
             val totalPay = pay + overtimePay
             val tax = pay * taxRate
 
-            // Display results
             payText.text = "Pay: %.2f".format(pay)
             overtimePayText.text = "Overtime Pay: %.2f".format(overtimePay)
             totalPayText.text = "Total Pay: %.2f".format(totalPay)
             taxText.text = "Tax: %.2f".format(tax)
         }
 
-        // Set click listener for About button
+
         aboutButton.setOnClickListener {
             val intent = Intent(this, AboutActivity::class.java)
             startActivity(intent)
